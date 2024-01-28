@@ -1,18 +1,102 @@
+import {Link} from '@react-navigation/native';
 import React, {Component} from 'react';
 import {StyleSheet} from 'react-native';
-import {View, TextField, Text, Button} from 'react-native-ui-lib';
+import {TouchableOpacity} from 'react-native-gesture-handler';
+import {
+  View,
+  TextField,
+  Text,
+  Button,
+  Assets,
+  Image,
+  Colors,
+  RadioButton,
+} from 'react-native-ui-lib';
+import {useNavigation} from '@react-navigation/native';
+
+Assets.loadAssetsGroup('icons', {
+  icon1: require('../assets/Logo.png'),
+});
 
 const SignUpScreen = () => {
+  const navigation = useNavigation();
   return (
-    <View flex paddingH-25 paddingT-120>
-      <Text blue50 text20>
-        Welcome
+    <View flex center paddingH-20>
+      <Image assetName="icon1" />
+      <Text marginB-20 black text30BO>
+        Register
       </Text>
-      <TextField text50 placeholder="username" grey10 />
-      <TextField text50 placeholder="password" secureTextEntry grey10 />
-      <View marginT-100 center>
-        <Button text70 white background-orange30 label="Login" />
-        <Button link text70 orange30 label="Sign Up" marginT-20 />
+
+      <View center row gap-10>
+        <RadioButton
+          value={'user'}
+          backgroundColor="#C6C6C6"
+          paddingH-10
+          paddingV-12
+          borderRadius={10}
+          label={'User'}
+        />
+        <RadioButton
+          value={'organzation'}
+          backgroundColor="#C6C6C6"
+          paddingH-10
+          paddingV-12
+          borderRadius={10}
+          label={'Organization'}
+        />
+      </View>
+      <View center gap-20 marginV-20>
+        <TextField
+          placeholder={'Name'}
+          floatingPlaceholder
+          fieldStyle={{
+            width: '100%',
+            // padding: 20,
+          }}
+          // onChangeText={onChangeText}
+          maxLength={30}
+        />
+        <TextField
+          placeholder={'Email'}
+          floatingPlaceholder
+          fieldStyle={{
+            width: '100%',
+            // padding: 20,
+          }}
+          // onChangeText={onChangeText}
+          maxLength={30}
+        />
+        <TextField
+          placeholder={'Password'}
+          floatingPlaceholder
+          secureTextEntry
+          fieldStyle={{
+            width: '100%',
+            // padding: 20,
+          }}
+          // onChangeText={onChangeText}
+          maxLength={30}
+        />
+      </View>
+      <View marginT-20 center>
+        <Button
+          label={'Signup'}
+          size={Button.sizes.large}
+          backgroundColor={Colors.blue40}
+          marginB-20
+          fullWidth
+          style={{
+            paddingHorizontal: 100,
+            borderRadius: 10,
+          }}
+        />
+        <Text>
+          Don't have an account?{' '}
+          <TouchableOpacity
+            onPress={() => navigation.navigate('Login' as never)}>
+            <Text blue40>Login</Text>
+          </TouchableOpacity>
+        </Text>
       </View>
     </View>
   );
