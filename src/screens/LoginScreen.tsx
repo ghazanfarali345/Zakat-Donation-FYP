@@ -1,4 +1,3 @@
-import {Link} from '@react-navigation/native';
 import React, {Component} from 'react';
 import {StyleSheet} from 'react-native';
 import {TouchableOpacity} from 'react-native-gesture-handler';
@@ -12,15 +11,12 @@ import {
   Colors,
 } from 'react-native-ui-lib';
 import {useNavigation} from '@react-navigation/native';
-Assets.loadAssetsGroup('icons', {
-  icon1: require('../assets/Logo.png'),
-});
 
 const LoginScreen = () => {
   const navigation = useNavigation();
   return (
     <View flex center>
-      <Image assetName="icon1" />
+      <Image assetName="logo" />
       <Text marginB-20 black text30BO>
         Login
       </Text>

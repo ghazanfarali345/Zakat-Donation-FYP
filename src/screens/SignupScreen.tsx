@@ -22,7 +22,7 @@ const SignUpScreen = () => {
   const navigation = useNavigation();
   return (
     <View flex center paddingH-20>
-      <Image assetName="icon1" />
+      <Image assetName="logo" />
       <Text marginB-20 black text30BO>
         Register
       </Text>
@@ -37,7 +37,7 @@ const SignUpScreen = () => {
           label={'User'}
         />
         <RadioButton
-          value={'organzation'}
+          value={'organization'}
           backgroundColor="#C6C6C6"
           paddingH-10
           paddingV-12
