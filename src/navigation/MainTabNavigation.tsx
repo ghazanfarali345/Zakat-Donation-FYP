@@ -2,22 +2,13 @@
 import React from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import HomeScreen from '../screens/HomeScreen';
-// import ProfileScreen from '../screens/ProfileScreen';
 import SettingsScreen from '../screens/SettingsScreen';
 // import NotificationsScreen from '../screens/NotificationsScreen';
 import {SettingStack} from './SettingNavigation';
 import OrganizationScreen from '../screens/OrganizationScreen';
-import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
-import {
-  View,
-  TextField,
-  Text,
-  Button,
-  Assets,
-  Image,
-  Colors,
-} from 'react-native-ui-lib';
+import {Assets, Image} from 'react-native-ui-lib';
+import {OrganizationStack} from './OrganizationNavigation';
 
 const Tab = createBottomTabNavigator();
 
@@ -30,6 +21,8 @@ Assets.loadAssetsGroup('icons', {
   home: require('../assets/Home.png'),
   placeholder: require('../assets/Placeholder.jpg'),
   editProfile: require('../assets/Edit-Profile.png'),
+  org: require('../assets/saylani.png'),
+  orgIcon: require('../assets/Organization.png'),
 });
 
 const MainTabNavigator: React.FC = () => {
@@ -43,12 +36,26 @@ const MainTabNavigator: React.FC = () => {
           tabBarIcon: ({color, size}) => <Image assetName="home" />,
         }}
       />
-      <Tab.Screen name="Organization" component={OrganizationScreen} />
+      <Tab.Screen
+        name="Organizations"
+        component={OrganizationStack}
+        options={{
+          tabBarLabel: 'Organization',
+          tabBarIcon: ({color, size}) => (
+            <Image
+              assetName="orgIcon"
+              width={25}
+              height={25}
+              tintColor="#2979F2"
+            />
+          ),
+        }}
+      />
       <Tab.Screen
         name="Settings"
         component={SettingStack}
         options={{
-          tabBarLabel: 'Home',
+          tabBarLabel: 'Settings',
           tabBarIcon: ({color, size}) => <Image assetName="history" />,
         }}
       />

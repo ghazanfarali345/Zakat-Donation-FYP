@@ -6,6 +6,9 @@ import HomeScreen from '../screens/HomeScreen';
 import SettingsScreen from '../screens/SettingsScreen';
 import ProfileScreen from '../screens/ProfileScreen';
 import EditProfileScreen from '../screens/EditProfileScreen';
+import ChangePasswordScreen from '../screens/ChangePassword';
+import BlogScreen from '../screens/BlogScreen';
+import BlogDetailScreen from '../screens/BlogDetailScreen';
 
 const Stack = createStackNavigator();
 
@@ -15,6 +18,9 @@ export function SettingStack() {
       <Stack.Screen name="Setting" component={SettingsScreen} />
       <Stack.Screen name="Profile" component={ProfileScreen} />
       <Stack.Screen name="EditProfile" component={EditProfileScreen} />
+      <Stack.Screen name="ChangePassword" component={ChangePasswordScreen} />
+      <Stack.Screen name="Blog" component={BlogScreen} />
+      <Stack.Screen name="BlogDetail" component={BlogDetailScreen} />
     </Stack.Navigator>
   );
 }

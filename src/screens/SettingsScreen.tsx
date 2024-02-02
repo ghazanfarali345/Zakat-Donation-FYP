@@ -38,7 +38,7 @@ const SettingsScreen = () => {
         </ListItem>
         <ListItem
           style={{borderTopColor: 'lightgray', borderTopWidth: 1}}
-          onPress={() => console.log('pressed')}>
+          onPress={() => navigation.navigate('ChangePassword' as never)}>
           <View flex row gap-10>
             <Image assetName="changePassword" />
             <Text grey10>Change Password</Text>
@@ -50,6 +50,14 @@ const SettingsScreen = () => {
           <View flex row gap-10>
             <Image assetName="profile" />
             <Text grey10>Profile</Text>
+          </View>
+        </ListItem>
+        <ListItem
+          style={{borderTopColor: 'lightgray', borderTopWidth: 1}}
+          onPress={() => navigation.navigate('Blog' as never)}>
+          <View flex row gap-10>
+            <Image assetName="profile" />
+            <Text grey10>Blogs</Text>
           </View>
         </ListItem>
       </ScrollView>
