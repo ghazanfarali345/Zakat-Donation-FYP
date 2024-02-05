@@ -9,18 +9,41 @@ import EditProfileScreen from '../screens/EditProfileScreen';
 import ChangePasswordScreen from '../screens/ChangePassword';
 import BlogScreen from '../screens/BlogScreen';
 import BlogDetailScreen from '../screens/BlogDetailScreen';
+import PaymentHistoryScreen from '../screens/paymentHistoryScreen';
+import {Button, Image} from 'react-native-ui-lib';
+import {Header} from '../components/header';
 
 const Stack = createStackNavigator();
 
 export function SettingStack() {
   return (
-    <Stack.Navigator screenOptions={{headerShown: false}}>
+    <Stack.Navigator
+      screenOptions={{
+        headerShown: false,
+        // title: 'My home',
+        // headerStyle: {
+        //   backgroundColor: '#f4511e',
+        // },
+        // headerTintColor: '#fff',
+        // headerTitleStyle: {
+        //   fontWeight: 'bold',
+        // },
+      }}>
       <Stack.Screen name="Setting" component={SettingsScreen} />
       <Stack.Screen name="Profile" component={ProfileScreen} />
       <Stack.Screen name="EditProfile" component={EditProfileScreen} />
-      <Stack.Screen name="ChangePassword" component={ChangePasswordScreen} />
+      <Stack.Screen
+        name="ChangePassword"
+        component={ChangePasswordScreen}
+        options={
+          {
+            // header: props => <Header {...props} title="Change Password" />,
+          }
+        }
+      />
       <Stack.Screen name="Blog" component={BlogScreen} />
       <Stack.Screen name="BlogDetail" component={BlogDetailScreen} />
+      <Stack.Screen name="PaymentHistory" component={PaymentHistoryScreen} />
     </Stack.Navigator>
   );
 }

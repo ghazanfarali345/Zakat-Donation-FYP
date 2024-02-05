@@ -23,6 +23,7 @@ Assets.loadAssetsGroup('icons', {
   editProfile: require('../assets/Edit-Profile.png'),
   org: require('../assets/saylani.png'),
   orgIcon: require('../assets/Organization.png'),
+  backIcon: require('../assets/backIcon.png'),
 });
 
 const MainTabNavigator: React.FC = () => {

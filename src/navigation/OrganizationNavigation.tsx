@@ -5,6 +5,7 @@ import {createStackNavigator} from '@react-navigation/stack';
 import HomeScreen from '../screens/HomeScreen';
 import OrganizationScreen from '../screens/OrganizationScreen';
 import OrganizationDetailScreen from '../screens/OrganizationDetailScreeen';
+import PaymentFormScreen from '../screens/PaymentForm';
 
 const Stack = createStackNavigator();
 
@@ -16,6 +17,7 @@ export function OrganizationStack() {
         name="OrganizationDetail"
         component={OrganizationDetailScreen}
       />
+      <Stack.Screen name="PaymentDetails" component={PaymentFormScreen} />
     </Stack.Navigator>
   );
 }

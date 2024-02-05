@@ -15,7 +15,7 @@ const SettingsScreen = () => {
   const navigation = useNavigation();
   return (
     <View flex paddingH-15>
-      <Text text50 marginV-30>
+      <Text text50 marginT-30 marginB-10>
         Settings
       </Text>
       <ScrollView style={{flex: 1}}>
@@ -23,6 +23,7 @@ const SettingsScreen = () => {
           style={{
             borderTopColor: 'lightgray',
             borderTopWidth: 1,
+            alignItems: 'center',
           }}
           onPress={() => console.log('pressed')}>
           <View flex row gap-10>
@@ -37,7 +38,11 @@ const SettingsScreen = () => {
           </View>
         </ListItem>
         <ListItem
-          style={{borderTopColor: 'lightgray', borderTopWidth: 1}}
+          style={{
+            borderTopColor: 'lightgray',
+            borderTopWidth: 1,
+            alignItems: 'center',
+          }}
           onPress={() => navigation.navigate('ChangePassword' as never)}>
           <View flex row gap-10>
             <Image assetName="changePassword" />
@@ -45,7 +50,11 @@ const SettingsScreen = () => {
           </View>
         </ListItem>
         <ListItem
-          style={{borderTopColor: 'lightgray', borderTopWidth: 1}}
+          style={{
+            borderTopColor: 'lightgray',
+            borderTopWidth: 1,
+            alignItems: 'center',
+          }}
           onPress={() => navigation.navigate('Profile' as never)}>
           <View flex row gap-10>
             <Image assetName="profile" />
@@ -53,11 +62,27 @@ const SettingsScreen = () => {
           </View>
         </ListItem>
         <ListItem
-          style={{borderTopColor: 'lightgray', borderTopWidth: 1}}
+          style={{
+            borderTopColor: 'lightgray',
+            borderTopWidth: 1,
+            alignItems: 'center',
+          }}
           onPress={() => navigation.navigate('Blog' as never)}>
           <View flex row gap-10>
             <Image assetName="profile" />
             <Text grey10>Blogs</Text>
+          </View>
+        </ListItem>
+        <ListItem
+          style={{
+            borderTopColor: 'lightgray',
+            borderTopWidth: 1,
+            alignItems: 'center',
+          }}
+          onPress={() => navigation.navigate('PaymentHistory' as never)}>
+          <View flex row gap-10>
+            <Image assetName="profile" />
+            <Text grey10>Zakat History</Text>
           </View>
         </ListItem>
       </ScrollView>
