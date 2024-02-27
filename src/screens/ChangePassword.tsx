@@ -15,13 +15,13 @@ import {Header} from '../components/header';
 const ChangePasswordScreen = () => {
   const navigation = useNavigation();
 
-  const [password, setPassword] = useState<string>();
+  const [password, setPassword] = useState<string>('12345');
 
   return (
     <>
-      <Header title="Change Password" />
       <View paddingH-20 flex>
-        <View row center marginT-20>
+        <Header />
+        <View row>
           <TouchableOpacity onPress={() => navigation.goBack()}>
             {/* <Text>icon</Text> */}
           </TouchableOpacity>

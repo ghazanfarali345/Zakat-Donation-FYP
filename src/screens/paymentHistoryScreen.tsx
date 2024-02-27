@@ -3,6 +3,7 @@ import React, {Component} from 'react';
 import {StyleSheet} from 'react-native';
 import {FlatList} from 'react-native';
 import {Image, ListItem, Text, View} from 'react-native-ui-lib';
+import {Header} from '../components/header';
 
 const PaymentHistoryScreen = () => {
   const navigation = useNavigation();
@@ -82,7 +83,8 @@ const PaymentHistoryScreen = () => {
 
   return (
     <View padding-20>
-      <Text text50 marginV-30>
+      <Header />
+      <Text text50 marginB-30>
         Payment History
       </Text>
       <FlatList

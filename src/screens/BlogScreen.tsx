@@ -2,6 +2,7 @@ import {useNavigation} from '@react-navigation/native';
 import React, {Component, useState} from 'react';
 import {StyleSheet, FlatList} from 'react-native';
 import {Card, View, Text} from 'react-native-ui-lib';
+import {Header} from '../components/header';
 
 const BlogScreen = () => {
   const navigation = useNavigation();
@@ -12,7 +13,7 @@ const BlogScreen = () => {
       title: 'Blog 1',
       image: 'https://images.pexels.com/photos/920382/pexels-photo-920382.jpeg',
       excerption:
-        'In publishing and graphic design, Lorem ipsum is a placeholder In publishing and graphic design, Lorem ipsum is a placeholder ...',
+        'In publishing and graphic design, Lorem ipsum is a placeholder ...',
       description:
         'In publishing and graphic design, Lorem ipsum is a placeholder texxt commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content. Lorem ipsum may be used as a placeholder before the final copy is available',
     },
@@ -21,7 +22,7 @@ const BlogScreen = () => {
       title: 'Blog 2',
       image: 'https://images.pexels.com/photos/920382/pexels-photo-920382.jpeg',
       excerption:
-        'In publishing and graphic design, Lorem ipsum is a placeholder In publishing and graphic design, Lorem ipsum is a placeholder ...',
+        'In publishing and graphic design, Lorem ipsum is a placeholder ...',
       description:
         'In publishing and graphic design, Lorem ipsum is a placeholder texxt commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content. Lorem ipsum may be used as a placeholder before the final copy is available',
     },
@@ -30,7 +31,7 @@ const BlogScreen = () => {
       title: 'Blog 3',
       image: 'https://images.pexels.com/photos/920382/pexels-photo-920382.jpeg',
       excerption:
-        'In publishing and graphic design, Lorem ipsum is a placeholder In publishing and graphic design, Lorem ipsum is a placeholder ...',
+        'In publishing and graphic design, Lorem ipsum is a placeholder ...',
       description:
         'In publishing and graphic design, Lorem ipsum is a placeholder texxt commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content. Lorem ipsum may be used as a placeholder before the final copy is available',
     },
@@ -50,18 +51,21 @@ const BlogScreen = () => {
           uri: image,
         }}
         width={100}
-        height={100}
+        height={170}
       />
-      <Text margin-10 text50>
+      <Text marginH-10 marginT-15 marginB-5 text50>
         {title}
       </Text>
-      <Text margin-10>{excerption}</Text>
+      <Text margin-10 marginT-5>
+        {excerption}
+      </Text>
     </Card>
   );
 
   return (
     <View padding-20>
-      <Text text50 marginV-20>
+      <Header />
+      <Text text50 marginT-20>
         Blogs
       </Text>
 

@@ -10,6 +10,9 @@ import {
   View,
 } from 'react-native-ui-lib';
 import {useNavigation} from '@react-navigation/native';
+import FeatherIcon from 'react-native-vector-icons/Feather';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import FontAwesome5Icons from 'react-native-vector-icons/FontAwesome5';
 
 const SettingsScreen = () => {
   const navigation = useNavigation();
@@ -55,9 +58,10 @@ const SettingsScreen = () => {
             borderTopWidth: 1,
             alignItems: 'center',
           }}
-          onPress={() => navigation.navigate('Profile' as never)}>
+          onPress={() => navigation.navigate('EditProfile' as never)}>
           <View flex row gap-10>
-            <Image assetName="profile" />
+            {/* <Image assetName="profile" /> */}
+            <FeatherIcon name="user" size={25} color={Colors.iconColor} />
             <Text grey10>Profile</Text>
           </View>
         </ListItem>
@@ -69,7 +73,13 @@ const SettingsScreen = () => {
           }}
           onPress={() => navigation.navigate('Blog' as never)}>
           <View flex row gap-10>
-            <Image assetName="profile" />
+            <Image
+              assetName="blogIcon"
+              width={23}
+              height={23}
+              tintColor={Colors.iconColor}
+            />
+            {/* <FontAwesome5Icons name="blog" size={25} color={Colors.iconColor} /> */}
             <Text grey10>Blogs</Text>
           </View>
         </ListItem>
@@ -81,7 +91,12 @@ const SettingsScreen = () => {
           }}
           onPress={() => navigation.navigate('PaymentHistory' as never)}>
           <View flex row gap-10>
-            <Image assetName="profile" />
+            {/* <Image assetName="profile" /> */}
+            <MaterialCommunityIcons
+              name="history"
+              size={25}
+              color={Colors.iconColor}
+            />
             <Text grey10>Zakat History</Text>
           </View>
         </ListItem>

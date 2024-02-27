@@ -2,7 +2,7 @@ import {useNavigation} from '@react-navigation/native';
 import React, {Component} from 'react';
 import {StyleSheet} from 'react-native';
 import {FlatList} from 'react-native';
-import {Image, ListItem, Text, View} from 'react-native-ui-lib';
+import {Card, Image, ListItem, Text, View} from 'react-native-ui-lib';
 
 const OrganizationScreen = () => {
   const navigation = useNavigation();
@@ -57,21 +57,30 @@ const OrganizationScreen = () => {
   type ItemProps = {title: string};
 
   const Item = ({title}: ItemProps) => (
-    <ListItem
-      centerV
-      onPress={() => navigation.navigate('OrganizationDetail' as never)}>
-      <Image assetName="org" width={40} height={40} borderRadius={100} />
-
-      <Text grey10 text70 marginL-10>
-        {title}
-      </Text>
-    </ListItem>
+    <Card marginT-10 padding-10 enableShadow>
+      <ListItem
+        centerV
+        style={{
+          height: 'auto',
+        }}
+        onPress={() => navigation.navigate('OrganizationDetail' as never)}>
+        <Image assetName="org" width={40} height={40} borderRadius={100} />
+        <View marginL-10>
+          <Text grey10 text70>
+            {title}
+          </Text>
+          <Text grey30 text3>
+            {title} asdfnadsfnas
+          </Text>
+        </View>
+      </ListItem>
+    </Card>
   );
 
   return (
-    <View padding-20>
-      <Text text50 marginV-30>
-        Organization
+    <View paddingH-20>
+      <Text text50 marginT-40 marginB-20>
+        Organizations
       </Text>
       <FlatList
         data={DATA}

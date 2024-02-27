@@ -11,7 +11,7 @@ const Stack = createStackNavigator();
 
 export function OrganizationStack() {
   return (
-    <Stack.Navigator>
+    <Stack.Navigator screenOptions={{headerShown: false}}>
       <Stack.Screen name="Organization" component={OrganizationScreen} />
       <Stack.Screen
         name="OrganizationDetail"

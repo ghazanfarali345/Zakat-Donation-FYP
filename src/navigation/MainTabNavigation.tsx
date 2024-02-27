@@ -7,7 +7,7 @@ import SettingsScreen from '../screens/SettingsScreen';
 import {SettingStack} from './SettingNavigation';
 import OrganizationScreen from '../screens/OrganizationScreen';
 
-import {Assets, Image} from 'react-native-ui-lib';
+import {Assets, Image, Typography, Colors} from 'react-native-ui-lib';
 import {OrganizationStack} from './OrganizationNavigation';
 
 const Tab = createBottomTabNavigator();
@@ -24,6 +24,15 @@ Assets.loadAssetsGroup('icons', {
   org: require('../assets/saylani.png'),
   orgIcon: require('../assets/Organization.png'),
   backIcon: require('../assets/backIcon.png'),
+  blogIcon: require('../assets/blogIcon1.png'),
+});
+
+Colors.loadColors({
+  iconColor: '#498FFA',
+});
+Typography.loadTypographies({
+  h1: {fontSize: 26, fontWeight: '600', lineHeight: 80},
+  h2: {fontSize: 46, fontWeight: '400', lineHeight: 64},
 });
 
 const MainTabNavigator: React.FC = () => {
