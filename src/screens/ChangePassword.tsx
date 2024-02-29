@@ -19,21 +19,17 @@ const ChangePasswordScreen = () => {
 
   return (
     <>
-      <View paddingH-20 flex>
+      <View padding-20 flex>
         <Header />
-        <View row>
-          <TouchableOpacity onPress={() => navigation.goBack()}>
-            {/* <Text>icon</Text> */}
-          </TouchableOpacity>
-          <Text text50 p>
-            Change Password
-          </Text>
+        <View row marginT-15>
+          <TouchableOpacity
+            onPress={() => navigation.goBack()}></TouchableOpacity>
+          <Text text50>Change Password</Text>
         </View>
 
-        <View flexG-1 paddingV-30>
+        <View flexG-1 paddingV-20 gap-10>
           <TextField
-            placeholder={'Change Password'}
-            floatingPlaceholder
+            placeholder={'Old Password'}
             secureTextEntry
             fieldStyle={{
               width: '100%',
@@ -43,6 +39,48 @@ const ChangePasswordScreen = () => {
             onChangeText={text => setPassword(text)}
             value={password}
             maxLength={30}
+            style={{
+              borderRadius: 10,
+              backgroundColor: '#ddd',
+              height: 45,
+              paddingHorizontal: 10,
+            }}
+          />
+          <TextField
+            placeholder={'New Password'}
+            secureTextEntry
+            fieldStyle={{
+              width: '100%',
+              borderBottomColor: 'lightgray',
+              borderBottomWidth: 1,
+            }}
+            onChangeText={text => setPassword(text)}
+            value={password}
+            maxLength={30}
+            style={{
+              borderRadius: 10,
+              backgroundColor: '#ddd',
+              height: 45,
+              paddingHorizontal: 10,
+            }}
+          />
+          <TextField
+            placeholder={'Confirm New Password'}
+            secureTextEntry
+            fieldStyle={{
+              width: '100%',
+              borderBottomColor: 'lightgray',
+              borderBottomWidth: 1,
+            }}
+            onChangeText={text => setPassword(text)}
+            value={password}
+            maxLength={30}
+            style={{
+              borderRadius: 10,
+              backgroundColor: '#ddd',
+              height: 45,
+              paddingHorizontal: 10,
+            }}
           />
         </View>
         <Button
@@ -50,6 +88,9 @@ const ChangePasswordScreen = () => {
           size={Button.sizes.large}
           backgroundColor={Colors.blue40}
           marginB-20
+          style={{
+            borderRadius: 10,
+          }}
         />
       </View>
     </>

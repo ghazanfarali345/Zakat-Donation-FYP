@@ -8,6 +8,7 @@ import {
   ListItem,
   TextField,
   Colors,
+  Button,
 } from 'react-native-ui-lib';
 import {useNavigation} from '@react-navigation/native';
 import {Header} from '../components/header';
@@ -38,91 +39,120 @@ const EditProfileScreen = () => {
   };
 
   return (
-    <View paddingH-20 flex>
+    <View padding-20 flex>
       <Header />
-      {/* <View flex row center> */}
-      {/* <Text text50>Edit Profile</Text> */}
-      {/* </View> */}
-      <View center flexG-1>
-        <View>
-          <Image
-            assetName="placeholder"
-            width={100}
-            height={100}
-            style={{borderRadius: 100}}
-          />
-          <TouchableOpacity
-            onPress={() => ImagePicker()}
-            style={{
-              position: 'absolute',
-              top: 60,
-              left: 50,
-              padding: 20,
-            }}>
-            {/* <Image
+      <View marginT-20 flexG-1>
+        <View center>
+          <View>
+            <Image
+              assetName="placeholder"
+              width={100}
+              height={100}
+              style={{borderRadius: 100}}
+            />
+            <TouchableOpacity
+              onPress={() => ImagePicker()}
+              style={{
+                position: 'absolute',
+                top: 60,
+                left: 50,
+                padding: 20,
+              }}>
+              {/* <Image
               assetName="editProfile"
               style={{
                 tintColor: 'red',
               }}
             /> */}
-            <AntDesignIcons name="edit" size={25} color={Colors.iconColor} />
-          </TouchableOpacity>
+              <AntDesignIcons name="edit" size={25} color={Colors.iconColor} />
+            </TouchableOpacity>
+          </View>
+        </View>
+        <View marginT-20 gap-10 flexG-1>
+          <TextField
+            placeholder={'Username'}
+            fieldStyle={{
+              width: '100%',
+              // padding: 20,
+              borderBottomColor: 'lightgray',
+              borderBottomWidth: 1,
+            }}
+            // onChangeText={onChangeText}
+            value={'ghazanfar'}
+            maxLength={30}
+            style={{
+              borderRadius: 10,
+              backgroundColor: '#ddd',
+              height: 45,
+              paddingHorizontal: 10,
+            }}
+          />
+          <TextField
+            placeholder={'email'}
+            fieldStyle={{
+              width: '100%',
+              // padding: 20,
+              borderBottomColor: 'lightgray',
+              borderBottomWidth: 1,
+            }}
+            value={'ghazanfar@yopmail.com'}
+            // onChangeText={onChangeText}
+            maxLength={30}
+            style={{
+              borderRadius: 10,
+              backgroundColor: '#ddd',
+              height: 45,
+              paddingHorizontal: 10,
+            }}
+          />
+          <TextField
+            placeholder={'Address'}
+            fieldStyle={{
+              width: '100%',
+              // padding: 20,
+              borderBottomColor: 'lightgray',
+              borderBottomWidth: 1,
+            }}
+            value={'Zabun Nisa Street, Saddar, Karachi'}
+            // onChangeText={onChangeText}
+            maxLength={30}
+            style={{
+              borderRadius: 10,
+              backgroundColor: '#ddd',
+              height: 45,
+              paddingHorizontal: 10,
+            }}
+          />
+          <TextField
+            placeholder={'Phone No'}
+            fieldStyle={{
+              width: '100%',
+              // padding: 20,
+              borderBottomColor: 'lightgray',
+              borderBottomWidth: 1,
+            }}
+            value={'+92300 1122334'}
+            // onChangeText={onChangeText}
+            maxLength={30}
+            style={{
+              borderRadius: 10,
+              backgroundColor: '#ddd',
+              height: 45,
+              paddingHorizontal: 10,
+            }}
+          />
         </View>
       </View>
-      <View gap-10 flexG-2>
-        <TextField
-          placeholder={'Username'}
-          floatingPlaceholder
-          fieldStyle={{
-            width: '100%',
-            // padding: 20,
-            borderBottomColor: 'lightgray',
-            borderBottomWidth: 1,
-          }}
-          // onChangeText={onChangeText}
-          value={''}
-          maxLength={30}
-        />
-        <TextField
-          placeholder={'Address'}
-          floatingPlaceholder
-          fieldStyle={{
-            width: '100%',
-            // padding: 20,
-            borderBottomColor: 'lightgray',
-            borderBottomWidth: 1,
-          }}
-          value={'xyz street karachi'}
-          // onChangeText={onChangeText}
-          maxLength={30}
-        />
-        <TextField
-          placeholder={'Address'}
-          floatingPlaceholder
-          fieldStyle={{
-            width: '100%',
-            // padding: 20,
-            borderBottomColor: 'lightgray',
-            borderBottomWidth: 1,
-          }}
-          value={'xyz street karachi'}
-          // onChangeText={onChangeText}
-          maxLength={30}
-        />
-        <TextField
-          placeholder={'Address'}
-          floatingPlaceholder
-          fieldStyle={{
-            width: '100%',
-            // padding: 20,
-            borderBottomColor: 'lightgray',
-            borderBottomWidth: 1,
-          }}
-          value={'xyz street karachi'}
-          // onChangeText={onChangeText}
-          maxLength={30}
-        />
-      </View>
+      <Button
+        label={'Save'}
+        size={Button.sizes.large}
+        backgroundColor={Colors.blue40}
+        marginB-20
+        onPress={() => {}}
+        style={{
+          borderRadius: 10,
+        }}
+      />
     </View>
   );
 };

@@ -41,6 +41,9 @@ const OrganizationDetailScreen = () => {
           size={Button.sizes.large}
           backgroundColor={Colors.blue40}
           marginB-20
+          style={{
+            borderRadius: 10,
+          }}
         />
       </View>
     </>

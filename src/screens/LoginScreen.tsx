@@ -12,8 +12,19 @@ import {
 } from 'react-native-ui-lib';
 import {useNavigation} from '@react-navigation/native';
 
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
+import {isAuthHandler} from '../redux/slices/userReducer';
+import {useDispatch} from 'react-redux';
+
 const LoginScreen = () => {
   const navigation = useNavigation();
+  const dispatch = useDispatch();
+
+  let saveData = async (value: any) => {
+    dispatch(isAuthHandler({isAuth: true}));
+  };
+
   return (
     <View flex center>
       <Image assetName="logo" />
@@ -22,17 +33,21 @@ const LoginScreen = () => {
       </Text>
       <TextField
         placeholder={'Username'}
-        floatingPlaceholder
         fieldStyle={{
           width: '100%',
           padding: 20,
         }}
         // onChangeText={onChangeText}
         maxLength={30}
+        style={{
+          borderRadius: 10,
+          backgroundColor: '#ddd',
+          height: 45,
+          paddingHorizontal: 10,
+        }}
       />
       <TextField
         placeholder={'Password'}
-        floatingPlaceholder
         secureTextEntry
         fieldStyle={{
           width: '100%',
@@ -40,6 +55,12 @@ const LoginScreen = () => {
         }}
         // onChangeText={onChangeText}
         maxLength={30}
+        style={{
+          borderRadius: 10,
+          backgroundColor: '#ddd',
+          height: 45,
+          paddingHorizontal: 10,
+        }}
       />
       <View marginT-100 center>
         <Button
@@ -52,6 +73,7 @@ const LoginScreen = () => {
             paddingHorizontal: 100,
             borderRadius: 10,
           }}
+          onPress={() => saveData(true)}
         />
         <Text>
           Don't have an account?{' '}

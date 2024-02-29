@@ -30,20 +30,19 @@ const HomeScreen = () => {
     <View flex padding-20>
       <Text h1>Zakat Calculation</Text>
       <TextField
-        floatingPlaceholder
-        floatOnFocus
         keyboardType="number-pad"
         placeholder={'Calculate Zakat'}
-        fieldStyle={{
-          width: '100%',
-          borderBottomWidth: 1,
-          borderBottomColor: 'lightgray',
-        }}
         value={amount}
         onChangeText={text => setAmount(text)}
         hint={amount as unknown as string}
         maxLength={30}
         padding-5
+        style={{
+          borderRadius: 10,
+          backgroundColor: '#ddd',
+          height: 45,
+          paddingHorizontal: 10,
+        }}
       />
       <View center flexG-1>
         <Text text50>Payable Amount</Text>

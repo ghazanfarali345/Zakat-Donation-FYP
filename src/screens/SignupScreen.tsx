@@ -29,46 +29,54 @@ const SignUpScreen = () => {
 
       <View center row gap-10>
         <RadioButton
+          size={20}
           value={'user'}
-          backgroundColor="#C6C6C6"
           paddingH-10
           paddingV-12
-          borderRadius={10}
+          borderRadius={100}
           label={'User'}
         />
         <RadioButton
+          size={20}
           value={'organization'}
-          backgroundColor="#C6C6C6"
           paddingH-10
           paddingV-12
-          borderRadius={10}
+          borderRadius={100}
           label={'Organization'}
         />
       </View>
       <View center gap-20 marginV-20>
         <TextField
           placeholder={'Name'}
-          floatingPlaceholder
           fieldStyle={{
             width: '100%',
             // padding: 20,
           }}
           // onChangeText={onChangeText}
           maxLength={30}
+          style={{
+            borderRadius: 10,
+            backgroundColor: '#ddd',
+            height: 45,
+            paddingHorizontal: 10,
+          }}
         />
         <TextField
           placeholder={'Email'}
-          floatingPlaceholder
           fieldStyle={{
             width: '100%',
-            // padding: 20,
+          }}
+          style={{
+            borderRadius: 10,
+            backgroundColor: '#ddd',
+            height: 45,
+            paddingHorizontal: 10,
           }}
           // onChangeText={onChangeText}
           maxLength={30}
         />
         <TextField
           placeholder={'Password'}
-          floatingPlaceholder
           secureTextEntry
           fieldStyle={{
             width: '100%',
@@ -76,6 +84,12 @@ const SignUpScreen = () => {
           }}
           // onChangeText={onChangeText}
           maxLength={30}
+          style={{
+            borderRadius: 10,
+            backgroundColor: '#ddd',
+            height: 45,
+            paddingHorizontal: 10,
+          }}
         />
       </View>
       <View marginT-20 center>

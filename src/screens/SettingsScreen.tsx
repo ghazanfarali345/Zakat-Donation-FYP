@@ -13,9 +13,20 @@ import {useNavigation} from '@react-navigation/native';
 import FeatherIcon from 'react-native-vector-icons/Feather';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import FontAwesome5Icons from 'react-native-vector-icons/FontAwesome5';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import {useDispatch} from 'react-redux';
+import {isAuthHandler} from '../redux/slices/userReducer';
 
 const SettingsScreen = () => {
   const navigation = useNavigation();
+  const dispatch = useDispatch();
+  let saveData = async (value: any) => {
+    await AsyncStorage.setItem('isAuth', JSON.stringify(false));
+
+    // let data = await AsyncStorage.getItem('isAuth');
+    // console.warn(data);
+    navigation.navigate('Login' as never);
+  };
   return (
     <View flex paddingH-15>
       <Text text50 marginT-30 marginB-10>
@@ -106,6 +117,12 @@ const SettingsScreen = () => {
         size={Button.sizes.large}
         backgroundColor={Colors.blue40}
         marginB-20
+        onPress={() => {
+          dispatch(isAuthHandler({isAuth: false}));
+        }}
+        style={{
+          borderRadius: 10,
+        }}
       />
     </View>
   );
