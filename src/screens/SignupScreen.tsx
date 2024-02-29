@@ -30,7 +30,7 @@ const SignUpScreen = () => {
       <View center row gap-10>
         <RadioButton
           size={20}
-          value={'user'}
+          value={'Zakat Giver'}
           paddingH-10
           paddingV-12
           borderRadius={100}
@@ -38,7 +38,7 @@ const SignUpScreen = () => {
         />
         <RadioButton
           size={20}
-          value={'organization'}
+          value={'Zakat Taker'}
           paddingH-10
           paddingV-12
           borderRadius={100}
@@ -47,10 +47,23 @@ const SignUpScreen = () => {
       </View>
       <View center gap-20 marginV-20>
         <TextField
-          placeholder={'Name'}
+          placeholder={'First Name'}
           fieldStyle={{
             width: '100%',
-            // padding: 20,
+          }}
+          // onChangeText={onChangeText}
+          maxLength={30}
+          style={{
+            borderRadius: 10,
+            backgroundColor: '#ddd',
+            height: 45,
+            paddingHorizontal: 10,
+          }}
+        />
+        <TextField
+          placeholder={'Last Name'}
+          fieldStyle={{
+            width: '100%',
           }}
           // onChangeText={onChangeText}
           maxLength={30}
@@ -80,7 +93,48 @@ const SignUpScreen = () => {
           secureTextEntry
           fieldStyle={{
             width: '100%',
-            // padding: 20,
+          }}
+          // onChangeText={onChangeText}
+          maxLength={30}
+          style={{
+            borderRadius: 10,
+            backgroundColor: '#ddd',
+            height: 45,
+            paddingHorizontal: 10,
+          }}
+        />
+        <TextField
+          placeholder={'Address'}
+          fieldStyle={{
+            width: '100%',
+          }}
+          // onChangeText={onChangeText}
+          maxLength={30}
+          style={{
+            borderRadius: 10,
+            backgroundColor: '#ddd',
+            height: 45,
+            paddingHorizontal: 10,
+          }}
+        />
+        <TextField
+          placeholder={'Address'}
+          fieldStyle={{
+            width: '100%',
+          }}
+          // onChangeText={onChangeText}
+          maxLength={30}
+          style={{
+            borderRadius: 10,
+            backgroundColor: '#ddd',
+            height: 45,
+            paddingHorizontal: 10,
+          }}
+        />
+        <TextField
+          placeholder={'City'}
+          fieldStyle={{
+            width: '100%',
           }}
           // onChangeText={onChangeText}
           maxLength={30}
