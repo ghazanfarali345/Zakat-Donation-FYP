@@ -4,8 +4,12 @@ import {StyleSheet} from 'react-native';
 import {Button, Colors, Image, ListItem, Text, View} from 'react-native-ui-lib';
 import {Header} from '../components/header';
 
-const OrganizationDetailScreen = () => {
-  const navigation = useNavigation();
+const OrganizationDetailScreen = ({route, navigation}: any) => {
+  // const navigation = useNavigation();
+
+  const {data} = route.params;
+
+  console.log({data});
   return (
     <>
       <View flex padding-20>
@@ -20,7 +24,7 @@ const OrganizationDetailScreen = () => {
             borderRadius={10}
           />
           <Text text50 marginT-10 grey10>
-            Organization component
+            {`${data.firstName} ${data.lastName}`}
           </Text>
           <Text marginT-10 grey10>
             description Lorem ipsum, dolor sit amet consectetur adipisicing
@@ -36,7 +40,7 @@ const OrganizationDetailScreen = () => {
           </Text>
         </View>
         <Button
-          onPress={() => navigation.navigate('PaymentDetails' as never)}
+          onPress={() => navigation.navigate('PaymentDetails', {id: data._id})}
           label={'Pay'}
           size={Button.sizes.large}
           backgroundColor={Colors.blue40}

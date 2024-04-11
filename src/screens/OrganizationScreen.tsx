@@ -1,11 +1,14 @@
 import {useNavigation} from '@react-navigation/native';
-import React, {Component} from 'react';
+import axios from 'axios';
+import React, {Component, useEffect, useState} from 'react';
 import {StyleSheet} from 'react-native';
 import {FlatList} from 'react-native';
 import {Card, Image, ListItem, Text, View} from 'react-native-ui-lib';
+import {baseUrl} from '../constants';
 
-const OrganizationScreen = () => {
-  const navigation = useNavigation();
+const OrganizationScreen = ({navigation}: any) => {
+  // const navigation = useNavigation();
+  const [orgs, setOrgs] = useState<any>([]);
 
   const DATA = [
     {
@@ -54,24 +57,37 @@ const OrganizationScreen = () => {
     },
   ];
 
+  const handleList = async () => {
+    let res = await axios.get(`${baseUrl}/users/organizations`);
+    if (res.data.success) {
+      setOrgs(res.data.data);
+    }
+  };
+
+  useEffect(() => {
+    handleList();
+  }, []);
+
   type ItemProps = {title: string};
 
-  const Item = ({title}: ItemProps) => (
+  const Item = (prop: any) => (
     <Card marginT-10 padding-10 enableShadow>
       <ListItem
         centerV
         style={{
           height: 'auto',
         }}
-        onPress={() => navigation.navigate('OrganizationDetail' as never)}>
+        onPress={() =>
+          navigation.navigate('OrganizationDetail', {data: prop.item})
+        }>
         <Image assetName="org" width={40} height={40} borderRadius={100} />
         <View marginL-10>
           <Text grey10 text70>
+            {`${prop.item.firstName} ${prop.item.lastName}`}
+          </Text>
+          {/* <Text grey30 text3>
             {title}
-          </Text>
-          <Text grey30 text3>
-            {title} asdfnadsfnas
-          </Text>
+          </Text> */}
         </View>
       </ListItem>
     </Card>
@@ -83,9 +99,12 @@ const OrganizationScreen = () => {
         Organizations
       </Text>
       <FlatList
-        data={DATA}
-        renderItem={({item}) => <Item title={item.title} />}
-        keyExtractor={item => item.id}
+        data={orgs}
+        ListEmptyComponent={() => <Text>No record found</Text>}
+        renderItem={({item}) => (
+          <Item title={`${item.firstName} ${item.lastName}`} item={item} />
+        )}
+        keyExtractor={item => item._id}
       />
     </View>
   );

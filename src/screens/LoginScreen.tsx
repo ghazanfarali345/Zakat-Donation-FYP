@@ -1,5 +1,5 @@
-import React, {Component} from 'react';
-import {StyleSheet} from 'react-native';
+import React, {Component, useState} from 'react';
+import {Alert, StyleSheet} from 'react-native';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import {
   View,
@@ -12,17 +12,39 @@ import {
 } from 'react-native-ui-lib';
 import {useNavigation} from '@react-navigation/native';
 
+import {showMessage, hideMessage} from 'react-native-flash-message';
+
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-import {isAuthHandler} from '../redux/slices/userReducer';
+import {addToken, addUser, isAuthHandler} from '../redux/slices/userReducer';
 import {useDispatch} from 'react-redux';
+import axios from 'axios';
+import {baseUrl} from '../constants';
 
 const LoginScreen = () => {
   const navigation = useNavigation();
   const dispatch = useDispatch();
 
-  let saveData = async (value: any) => {
-    dispatch(isAuthHandler({isAuth: true}));
+  const [email, setEmail] = useState<string>('ab4@yopmail.com');
+  const [password, setPassword] = useState<string>('password');
+
+  let handleLogin = async (value: any) => {
+    if (!email || !password) {
+      showMessage({
+        message: 'Email or Password is required',
+        type: 'danger',
+      });
+    }
+
+    let res = await axios.post(`${baseUrl}/users/login`, {email, password});
+
+    console.log(res.data);
+
+    if (res.data.success == true && res.data.token) {
+      dispatch(isAuthHandler({isAuth: true}));
+      dispatch(addToken(res.data.token));
+      dispatch(addUser(res.data.data));
+    }
   };
 
   return (
@@ -37,7 +59,7 @@ const LoginScreen = () => {
           width: '100%',
           padding: 20,
         }}
-        // onChangeText={onChangeText}
+        onChangeText={text => setEmail(text)}
         maxLength={30}
         style={{
           borderRadius: 10,
@@ -53,7 +75,7 @@ const LoginScreen = () => {
           width: '100%',
           padding: 20,
         }}
-        // onChangeText={onChangeText}
+        onChangeText={text => setPassword(text)}
         maxLength={30}
         style={{
           borderRadius: 10,
@@ -73,7 +95,7 @@ const LoginScreen = () => {
             paddingHorizontal: 100,
             borderRadius: 10,
           }}
-          onPress={() => saveData(true)}
+          onPress={() => handleLogin(true)}
         />
         <Text>
           Don't have an account?{' '}

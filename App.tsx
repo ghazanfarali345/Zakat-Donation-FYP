@@ -21,6 +21,8 @@ import {RootState, store} from './src/redux/store';
 import {Provider} from 'react-redux';
 
 import Navigation from './src/navigation';
+import {StripeProvider} from '@stripe/stripe-react-native';
+import {stripe_public_key} from './src/constants';
 
 function App(): React.JSX.Element {
   const isDarkMode = useColorScheme() === 'dark';
@@ -42,7 +44,9 @@ function App(): React.JSX.Element {
 
   return (
     <Provider store={store}>
-      <Navigation />
+      <StripeProvider publishableKey={stripe_public_key}>
+        <Navigation />
+      </StripeProvider>
     </Provider>
   );
 }
