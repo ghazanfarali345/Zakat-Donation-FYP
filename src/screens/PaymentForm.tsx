@@ -125,6 +125,7 @@ import {
 import axios from 'axios';
 import {Alert} from 'react-native';
 import {baseUrl} from '../constants';
+import {showMessage} from 'react-native-flash-message';
 
 const PaymentFormScreen = ({route}: any) => {
   const [cardInfo, setCardInfo] = useState<any>(null);
@@ -159,7 +160,13 @@ const PaymentFormScreen = ({route}: any) => {
             paymentMethodId,
             orgId: id,
           });
-          console.log({paymentSuccess});
+          console.log({paymentSuccess: paymentSuccess.data});
+          if (paymentSuccess.data.success == true) {
+            showMessage({
+              message: 'Payment sent successfully',
+              type: 'success',
+            });
+          }
         }
 
         console.log(paymentMethodId);
