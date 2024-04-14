@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {Component, useEffect, useState} from 'react';
 import {StyleSheet, TouchableOpacity} from 'react-native';
 import {launchCamera, launchImageLibrary} from 'react-native-image-picker';
 import {
@@ -13,9 +13,77 @@ import {
 import {useNavigation} from '@react-navigation/native';
 import {Header} from '../components/header';
 import AntDesignIcons from 'react-native-vector-icons/AntDesign';
+import {useSelector} from 'react-redux';
+import axios from 'axios';
+import {baseUrl} from '../constants';
+import {showMessage} from 'react-native-flash-message';
 
 const EditProfileScreen = () => {
   const navigation = useNavigation();
+
+  const {user, token} = useSelector((state: any) => state.user);
+
+  const [firstName, setFirstName] = useState<string>('');
+  const [lastName, setLastName] = useState<string>('');
+  const [address, setAddress] = useState<string>('');
+  const [city, setCity] = useState<string>('');
+  const [mobileNo, setMobileNo] = useState<string>('');
+
+  const [isLoading, setLoading] = useState<boolean>(false);
+
+  useEffect(() => {
+    if (user) {
+      console.log({user});
+      setAddress(user.address);
+      setCity(user.city);
+      setFirstName(user.firstName);
+      setLastName(user.lastName);
+      setMobileNo(user.phoneNo);
+    }
+  }, [user]);
+
+  const handleSaveProfile = async () => {
+    console.log('Press');
+    try {
+      setLoading(true);
+
+      console.log('hello');
+
+      let body = {
+        firstName,
+        lastName,
+        address,
+        city,
+        phoneNo: mobileNo,
+      };
+
+      console.log('hello 2');
+
+      let res = await axios.put(`${baseUrl}/users/${user._id}`, body, {
+        headers: {
+          'content-type': 'application/json',
+          authorization: `Bearer ${token}`,
+        },
+      });
+      console.log('hello 3');
+
+      if (res.data.success) {
+        showMessage({
+          message: res.data.message,
+          type: 'info',
+        });
+      }
+    } catch (error: any) {
+      console.log(error.response.data);
+      showMessage({
+        message: 'Something went wrong',
+        type: 'danger',
+      });
+      setLoading(false);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   const ImagePicker = () => {
     console.warn('image');
@@ -70,15 +138,15 @@ const EditProfileScreen = () => {
         </View>
         <View marginT-20 gap-10 flexG-1>
           <TextField
-            placeholder={'Username'}
+            placeholder={'First name'}
             fieldStyle={{
               width: '100%',
               // padding: 20,
               borderBottomColor: 'lightgray',
               borderBottomWidth: 1,
             }}
-            // onChangeText={onChangeText}
-            value={'ghazanfar'}
+            onChangeText={text => setFirstName(text)}
+            value={firstName}
             maxLength={30}
             style={{
               borderRadius: 10,
@@ -88,15 +156,15 @@ const EditProfileScreen = () => {
             }}
           />
           <TextField
-            placeholder={'email'}
+            placeholder={'Last name'}
             fieldStyle={{
               width: '100%',
               // padding: 20,
               borderBottomColor: 'lightgray',
               borderBottomWidth: 1,
             }}
-            value={'ghazanfar@yopmail.com'}
-            // onChangeText={onChangeText}
+            value={lastName}
+            onChangeText={text => setLastName(text)}
             maxLength={30}
             style={{
               borderRadius: 10,
@@ -113,7 +181,25 @@ const EditProfileScreen = () => {
               borderBottomColor: 'lightgray',
               borderBottomWidth: 1,
             }}
-            value={'Zabun Nisa Street, Saddar, Karachi'}
+            value={address}
+            // onChangeText={onChangeText}
+            maxLength={30}
+            style={{
+              borderRadius: 10,
+              backgroundColor: '#ddd',
+              height: 45,
+              paddingHorizontal: 10,
+            }}
+          />
+          <TextField
+            placeholder={'City'}
+            fieldStyle={{
+              width: '100%',
+              // padding: 20,
+              borderBottomColor: 'lightgray',
+              borderBottomWidth: 1,
+            }}
+            value={city}
             // onChangeText={onChangeText}
             maxLength={30}
             style={{
@@ -131,7 +217,7 @@ const EditProfileScreen = () => {
               borderBottomColor: 'lightgray',
               borderBottomWidth: 1,
             }}
-            value={'+92300 1122334'}
+            value={mobileNo}
             // onChangeText={onChangeText}
             maxLength={30}
             style={{
@@ -148,7 +234,8 @@ const EditProfileScreen = () => {
         size={Button.sizes.large}
         backgroundColor={Colors.blue40}
         marginB-20
-        onPress={() => {}}
+        onPress={handleSaveProfile}
+        disabled={isLoading}
         style={{
           borderRadius: 10,
         }}

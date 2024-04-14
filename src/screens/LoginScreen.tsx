@@ -25,25 +25,30 @@ const LoginScreen = () => {
   const navigation = useNavigation();
   const dispatch = useDispatch();
 
-  const [email, setEmail] = useState<string>('ab4@yopmail.com');
-  const [password, setPassword] = useState<string>('password');
+  const [email, setEmail] = useState<string>('gh@yopmail.com');
+  const [password, setPassword] = useState<string>('12345');
 
   let handleLogin = async (value: any) => {
-    if (!email || !password) {
+    try {
+      if (!email || !password) {
+        showMessage({
+          message: 'Email or Password is required',
+          type: 'danger',
+        });
+      }
+
+      let res = await axios.post(`${baseUrl}/users/login`, {email, password});
+
+      if (res.data.success == true && res.data.token) {
+        dispatch(isAuthHandler({isAuth: true}));
+        dispatch(addToken({token: res.data.token}));
+        dispatch(addUser({user: res.data.data}));
+      }
+    } catch (error: any) {
       showMessage({
-        message: 'Email or Password is required',
+        message: error.response.data.message,
         type: 'danger',
       });
-    }
-
-    let res = await axios.post(`${baseUrl}/users/login`, {email, password});
-
-    console.log(res.data);
-
-    if (res.data.success == true && res.data.token) {
-      dispatch(isAuthHandler({isAuth: true}));
-      dispatch(addToken(res.data.token));
-      dispatch(addUser(res.data.data));
     }
   };
 

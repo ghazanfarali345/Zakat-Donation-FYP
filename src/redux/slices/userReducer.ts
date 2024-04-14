@@ -9,13 +9,17 @@ export const userSlice = createSlice({
   },
   reducers: {
     addUser: (state, action) => {
+      console.log({state, action});
       state.user = action.payload.user;
     },
     addToken: (state, action) => {
+      console.log({state, action});
+
       state.token = action.payload.token;
     },
     isAuthHandler: (state, action) => {
-      console.log({action});
+      console.log({state, action});
+
       state.isAuth = action.payload.isAuth;
     },
   },

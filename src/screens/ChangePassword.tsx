@@ -1,4 +1,4 @@
-import React, {Component, useState} from 'react';
+import React, {Component, useEffect, useState} from 'react';
 import {StyleSheet, TouchableOpacity} from 'react-native';
 import {
   Text,
@@ -11,11 +11,67 @@ import {
 } from 'react-native-ui-lib';
 import {useNavigation} from '@react-navigation/native';
 import {Header} from '../components/header';
+import axios from 'axios';
+import {baseUrl} from '../constants';
+import {showMessage} from 'react-native-flash-message';
+import {useSelector} from 'react-redux';
 
 const ChangePasswordScreen = () => {
   const navigation = useNavigation();
 
-  const [password, setPassword] = useState<string>('12345');
+  const [oldPassword, setOldPassword] = useState<string>('');
+  const [newPassword, setNewPassword] = useState<string>('');
+  const [confirmNewPassword, setConfirmNewPassword] = useState<string>('');
+
+  const {user, token} = useSelector((state: any) => state.user);
+
+  const [isLoading, setLoading] = useState<boolean>(false);
+
+  const handleSaveProfile = async () => {
+    console.log('Press');
+    try {
+      setLoading(true);
+
+      let body = {
+        type: 'CHANGE_PASSWORD',
+        email: user.email,
+        oldPassword,
+        newPassword,
+        confirmNewPassword,
+      };
+
+      let res = await axios.post(`${baseUrl}/users/changePassword/`, body, {
+        headers: {
+          'content-type': 'application/json',
+          authorization: `Bearer ${token}`,
+        },
+      });
+      console.log('hello 3');
+
+      if (res.data.success) {
+        showMessage({
+          message: res.data.message,
+          type: 'info',
+        });
+      }
+    } catch (error: any) {
+      console.log(error.response.data);
+      if (error.response.data.status == '403') {
+        showMessage({
+          message: error.response.data.error,
+          type: 'danger',
+        });
+      } else {
+        showMessage({
+          message: 'Something went wrong',
+          type: 'danger',
+        });
+      }
+      setLoading(false);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <>
@@ -36,8 +92,8 @@ const ChangePasswordScreen = () => {
               borderBottomColor: 'lightgray',
               borderBottomWidth: 1,
             }}
-            onChangeText={text => setPassword(text)}
-            value={password}
+            onChangeText={text => setOldPassword(text)}
+            value={oldPassword}
             maxLength={30}
             style={{
               borderRadius: 10,
@@ -54,8 +110,8 @@ const ChangePasswordScreen = () => {
               borderBottomColor: 'lightgray',
               borderBottomWidth: 1,
             }}
-            onChangeText={text => setPassword(text)}
-            value={password}
+            onChangeText={text => setNewPassword(text)}
+            value={newPassword}
             maxLength={30}
             style={{
               borderRadius: 10,
@@ -72,8 +128,8 @@ const ChangePasswordScreen = () => {
               borderBottomColor: 'lightgray',
               borderBottomWidth: 1,
             }}
-            onChangeText={text => setPassword(text)}
-            value={password}
+            onChangeText={text => setConfirmNewPassword(text)}
+            value={confirmNewPassword}
             maxLength={30}
             style={{
               borderRadius: 10,
@@ -84,6 +140,8 @@ const ChangePasswordScreen = () => {
           />
         </View>
         <Button
+          onPress={handleSaveProfile}
+          disabled={isLoading}
           label={'Save'}
           size={Button.sizes.large}
           backgroundColor={Colors.blue40}

@@ -33,7 +33,7 @@ const SettingsScreen = () => {
         Settings
       </Text>
       <ScrollView style={{flex: 1}}>
-        <ListItem
+        {/* <ListItem
           style={{
             borderTopColor: 'lightgray',
             borderTopWidth: 1,
@@ -50,7 +50,7 @@ const SettingsScreen = () => {
               onValueChange={() => console.log('value changed')}
             />
           </View>
-        </ListItem>
+        </ListItem> */}
         <ListItem
           style={{
             borderTopColor: 'lightgray',

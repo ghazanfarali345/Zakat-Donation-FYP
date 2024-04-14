@@ -131,7 +131,7 @@ const PaymentFormScreen = ({route}: any) => {
   const [cardInfo, setCardInfo] = useState<any>(null);
   const [isLoading, setLoading] = useState(false);
 
-  const {id} = route.params;
+  const {id, orgName} = route.params;
 
   const fetchCardDetail = (cardDetail: any) => {
     // console.log("my card details",cardDetail)
@@ -159,6 +159,7 @@ const PaymentFormScreen = ({route}: any) => {
             amount: 200,
             paymentMethodId,
             orgId: id,
+            orgName,
           });
           console.log({paymentSuccess: paymentSuccess.data});
           if (paymentSuccess.data.success == true) {

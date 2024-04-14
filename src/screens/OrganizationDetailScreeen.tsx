@@ -40,7 +40,12 @@ const OrganizationDetailScreen = ({route, navigation}: any) => {
           </Text>
         </View>
         <Button
-          onPress={() => navigation.navigate('PaymentDetails', {id: data._id})}
+          onPress={() =>
+            navigation.navigate('PaymentDetails', {
+              id: data._id,
+              orgName: `${data.firstName} ${data.lastName}`,
+            })
+          }
           label={'Pay'}
           size={Button.sizes.large}
           backgroundColor={Colors.blue40}

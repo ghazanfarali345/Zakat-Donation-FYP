@@ -1,8 +1,9 @@
-import React, {Component} from 'react';
+import React, {Component, useEffect, useState} from 'react';
 import {StyleSheet, TouchableOpacity} from 'react-native';
 import {Text, Image, View, ListItem, TextField} from 'react-native-ui-lib';
 import {useNavigation} from '@react-navigation/native';
 import {Header} from '../components/header';
+import {useSelector} from 'react-redux';
 
 const ProfileScreen = () => {
   const navigation = useNavigation();
@@ -39,6 +40,16 @@ const ProfileScreen = () => {
             </View>
           </ListItem>
 
+          <ListItem center>
+            <View
+              paddingL-20
+              centerV
+              style={{borderRadius: 30}}
+              flex
+              backgroundColor="lightgray">
+              <Text>Ghazanfar Ali</Text>
+            </View>
+          </ListItem>
           <ListItem center>
             <View
               paddingL-20
