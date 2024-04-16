@@ -9,8 +9,12 @@ import {
   Image,
   Colors,
 } from 'react-native-ui-lib';
+import {useDispatch} from 'react-redux';
+import {setZakatAmount, resetZakatAmount} from '../redux/slices/userReducer';
 
-const HomeScreen = () => {
+const HomeScreen = ({navigation}: any) => {
+  const dispatch = useDispatch();
+
   const [amount, setAmount] = useState<string>();
   const [calculatedZakat, setCalculatedZakat] = useState<string>('0');
 
@@ -20,10 +24,19 @@ const HomeScreen = () => {
         let zakat = (Number(amount) / 100) * 2.5;
         let zakatCopy = zakat.toFixed(1) as unknown as string;
         setCalculatedZakat(zakatCopy);
+
+        dispatch(setZakatAmount({zakat_amount: zakatCopy}));
       }
     } catch (error: any) {
       console.log(error.message);
     }
+  };
+
+  const handleSelectOrg = () => {
+    // navigation.navigate('CheckoutScreen');
+    navigation.navigate('Settings', {
+      screen: 'CheckoutScreen',
+    });
   };
 
   return (
@@ -50,19 +63,32 @@ const HomeScreen = () => {
           Rs. {calculatedZakat}
         </Text>
       </View>
+      <View row spread gap-10>
+        <Button
+          flex
+          label={'Calculate'}
+          onPress={handleCalculateZakat}
+          size={Button.sizes.large}
+          backgroundColor={Colors.blue40}
+          marginB-20
+        />
+        <Button
+          flex
+          label={'Clear'}
+          onPress={() => {
+            dispatch(resetZakatAmount());
+
+            setAmount('');
+            setCalculatedZakat('0');
+          }}
+          size={Button.sizes.large}
+          backgroundColor={Colors.blue40}
+          marginB-20
+        />
+      </View>
       <Button
-        label={'Calculate'}
-        onPress={handleCalculateZakat}
-        size={Button.sizes.large}
-        backgroundColor={Colors.blue40}
-        marginB-20
-      />
-      <Button
-        label={'Clear'}
-        onPress={() => {
-          setAmount('');
-          setCalculatedZakat('0');
-        }}
+        label={'Pay'}
+        onPress={handleSelectOrg}
         size={Button.sizes.large}
         backgroundColor={Colors.blue40}
         marginB-20

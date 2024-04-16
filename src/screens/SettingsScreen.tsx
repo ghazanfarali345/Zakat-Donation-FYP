@@ -108,7 +108,7 @@ const SettingsScreen = () => {
               size={25}
               color={Colors.iconColor}
             />
-            <Text grey10>Zakat History</Text>
+            <Text grey10>Zakat History </Text>
           </View>
         </ListItem>
       </ScrollView>

@@ -6,6 +6,7 @@ import HomeScreen from '../screens/HomeScreen';
 import OrganizationScreen from '../screens/OrganizationScreen';
 import OrganizationDetailScreen from '../screens/OrganizationDetailScreeen';
 import PaymentFormScreen from '../screens/PaymentForm';
+import CheckoutScreen from '../screens/CheckoutScreen';
 
 const Stack = createStackNavigator();
 
@@ -18,6 +19,7 @@ export function OrganizationStack() {
         component={OrganizationDetailScreen}
       />
       <Stack.Screen name="PaymentDetails" component={PaymentFormScreen} />
+      <Stack.Screen name="CheckoutScreen" component={CheckoutScreen} />
     </Stack.Navigator>
   );
 }

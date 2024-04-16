@@ -10,6 +10,7 @@ import ChangePasswordScreen from '../screens/ChangePassword';
 import BlogScreen from '../screens/BlogScreen';
 import BlogDetailScreen from '../screens/BlogDetailScreen';
 import PaymentHistoryScreen from '../screens/paymentHistoryScreen';
+import CheckoutScreen from '../screens/CheckoutScreen';
 
 const Stack = createStackNavigator();
 
@@ -26,6 +27,7 @@ export function SettingStack() {
       <Stack.Screen name="Blog" component={BlogScreen} />
       <Stack.Screen name="BlogDetail" component={BlogDetailScreen} />
       <Stack.Screen name="PaymentHistory" component={PaymentHistoryScreen} />
+      <Stack.Screen name="CheckoutScreen" component={CheckoutScreen} />
     </Stack.Navigator>
   );
 }

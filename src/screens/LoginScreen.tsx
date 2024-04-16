@@ -45,10 +45,13 @@ const LoginScreen = () => {
         dispatch(addUser({user: res.data.data}));
       }
     } catch (error: any) {
-      showMessage({
-        message: error.response.data.message,
-        type: 'danger',
-      });
+      console.log({error});
+      if (error && error.response && error.response.data) {
+        showMessage({
+          message: error.response.data.message,
+          type: 'danger',
+        });
+      }
     }
   };
 
